@@ -58,7 +58,7 @@ const candidates: string[] = ['Candidate #1', 'Candidate #2', 'Candidate #3'];
 
 interface IRadioButton{
     name: string, 
-    change(event: any): void
+    change(event: React.ChangeEvent): void
 }
 
 const RadioItem: React.FC<IRadioButton> = (props) => {
@@ -93,7 +93,7 @@ class Form extends React.Component<FormProps, FormState>{
         alert(this.state.value);
     }
 
-    render(): JSX.Element {
+    render() {
         const listOfCandidates = candidates.map( (candidate) => 
                 <RadioItem name={candidate} key={candidate} change={this.handleRadioChange}/>
             );
