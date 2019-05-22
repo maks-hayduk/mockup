@@ -40,7 +40,7 @@ const FormWrapper = styled.form`
 const Button = styled.button`
     width: 170px;
     height: 50px;
-    background-color: #e5e5e5;
+    background-color: ${props => props.theme.buttonColor};
     vertical-align: middle;
     font-size: 15px;
     border-radius: 10px;
@@ -49,7 +49,7 @@ const Button = styled.button`
     margin-top: 50px;
     cursor: pointer;
     :active{
-        background-color: #d6d6d6;
+        background-color: ${props => props.theme.buttonActiveColor};
         color: black;
     }
 `;
@@ -57,11 +57,11 @@ const Button = styled.button`
 const candidates: string[] = ['Candidate #1', 'Candidate #2', 'Candidate #3'];
 
 interface IRadioButton{
-    name:string, 
-    change: any
+    name: string, 
+    change(event: any): void
 }
 
-const RadioItem: React.FC<IRadioButton> = (props) => {
+const RadioItem: React.FC<IRadioButton> = (props: IRadioButton) => {
     return (
     <Label>
         <Input type="radio" name="candidate" value={props.name} onChange={props.change}/>
@@ -80,8 +80,7 @@ class Form extends React.Component{
         this.handleButtonClick = this.handleButtonClick.bind(this);
     }
 
-    handleRadioChange(event: any): void {
-        event.target.checked = true;
+    handleRadioChange(event: React.ChangeEvent<HTMLSelectElement>): void {
         this.setState({value: event.target.value});
     }
 
@@ -90,12 +89,12 @@ class Form extends React.Component{
     }
 
     render(): JSX.Element {
-        const listItem = candidates.map( (can) => 
-                <RadioItem name={can} key={can} change={this.handleRadioChange}/>
+        const listOfCandidates = candidates.map( (candidate) => 
+                <RadioItem name={candidate} key={candidate} change={this.handleRadioChange}/>
             );
         return (
             <FormWrapper>
-                {listItem}
+                {listOfCandidates}
                 <Button type="button" onClick={this.handleButtonClick}>Vote</Button>
             </FormWrapper>
         );
