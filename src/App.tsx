@@ -24,10 +24,6 @@ const Image = styled.img`
   src: ;
 `;
 
-const app = {
-  name: 'App'
-}
-
 interface IHeader {
   name: string,
   url: string
@@ -43,17 +39,36 @@ const Header: React.FC<IHeader> = (props) => {
   );
 }
 
+interface FormProps{}
+interface FormState{
+  name: string;
+}
 
-const App: React.FC = () => {
-  return (
-    <ThemeProvider theme = {theme}>
-      <>
-        <GlobalReset />
-        <Header name={app.name} url = ''/>
-        <Main />
-      </>
-    </ThemeProvider>
-  );
+
+class App extends React.Component<FormProps, FormState>{
+  state: FormState;
+  constructor(props: FormProps){
+    super(props);
+    this.state = {
+      name: 'App'
+    }
+    this.changeName = this.changeName.bind(this);
+  }
+
+  changeName(changedName: string):void {
+    this.setState({name: changedName});
+  }
+  render(){
+    return (
+      <ThemeProvider theme = {theme}>
+        <>
+          <GlobalReset />
+          <Header name={this.state.name} url=''/>
+          <Main changeHandler={this.changeName} />
+        </>
+      </ThemeProvider>
+    );
+  }
 }
 
 export default App;

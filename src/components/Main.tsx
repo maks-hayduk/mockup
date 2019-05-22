@@ -68,7 +68,9 @@ const RadioItem: React.FC<IRadioButton> = (props) => {
     </Label>);
 } 
 
-interface FormProps{ }
+interface FormProps{ 
+    changedAppName: any;
+}
 interface FormState{ 
     value: string;
 }
@@ -85,6 +87,7 @@ class Form extends React.Component<FormProps, FormState>{
     }
 
     handleRadioChange(event: React.ChangeEvent<HTMLSelectElement>): void {
+        this.props.changedAppName(event.target.value);
         this.setState({value: event.target.value});
     }
 
@@ -105,12 +108,16 @@ class Form extends React.Component<FormProps, FormState>{
     }
 }
 
-const Main: React.FC = () => {
+interface MainProps{
+    changeHandler: (changedName:string) => void
+}
+
+const Main: React.FC<MainProps> = (props) => {
     return (
         <Wrapper>
             <MainTitle>Let's vote</MainTitle>
             <Div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, tempore. Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, tempore. Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, tempore.</Div>
-            <Form />
+            <Form changedAppName={props.changeHandler}/>
         </Wrapper>
     );
 }
