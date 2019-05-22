@@ -25,8 +25,8 @@ const Image = styled.img`
 `;
 
 interface IHeader {
-  name: string,
-  url: string
+  name: string;
+  url: string;
 }
 
 const Header: React.FC<IHeader> = (props) => {
@@ -34,36 +34,34 @@ const Header: React.FC<IHeader> = (props) => {
       <HeaderDiv>
         <Span>{props.name}</Span>
         <Span>Welcome to {props.name}</Span>
-        <Image src = {props.url} />
+        <Image src={props.url} />
       </HeaderDiv>
   );
-}
+};
 
-interface FormProps{}
-interface FormState{
+interface IFormState {
   name: string;
 }
 
-
-class App extends React.Component<FormProps, FormState>{
-  state: FormState;
-  constructor(props: FormProps){
+class App extends React.Component {
+  state: IFormState;
+  constructor(props: any) {
     super(props);
     this.state = {
       name: 'App'
-    }
+    };
     this.changeName = this.changeName.bind(this);
   }
 
-  changeName(changedName: string):void {
-    this.setState({name: changedName});
+  changeName(changedName: string): void {
+    this.setState({ name: changedName });
   }
-  render(){
+  render() {
     return (
-      <ThemeProvider theme = {theme}>
+      <ThemeProvider theme={theme}>
         <>
           <GlobalReset />
-          <Header name={this.state.name} url=''/>
+          <Header name={this.state.name} url=""/>
           <Main changeHandler={this.changeName} />
         </>
       </ThemeProvider>

@@ -55,71 +55,76 @@ const Button = styled.button`
 
 const candidates: string[] = ['Candidate #1', 'Candidate #2', 'Candidate #3'];
 
-interface IRadioButton{
-    name: string, 
-    change(event: React.ChangeEvent): void
+interface IRadioButton {
+  name: string;
+  change(event: React.ChangeEvent): void;
 }
 
 const RadioItem: React.FC<IRadioButton> = (props) => {
-    return (
+  return (
     <Label>
         <Input type="radio" name="candidate" value={props.name} onChange={props.change}/>
         {props.name}
-    </Label>);
-} 
+    </Label>
+  );
+};
 
-interface FormProps{ 
-    changedAppName: any;
+interface IFormProps { 
+  changedAppName: any;
 }
-interface FormState{ 
-    value: string;
+interface IFormState { 
+  value: string;
 }
 
-class Form extends React.Component<FormProps, FormState>{
-    state: FormState;
-    constructor(props: FormProps){
-        super(props);
-        this.state = {
-            value: 'You have not chosen candidates',
-        }
-        this.handleRadioChange = this.handleRadioChange.bind(this);
-        this.handleButtonClick = this.handleButtonClick.bind(this);
-    }
+class Form extends React.Component<IFormProps, IFormState> {
+  state: IFormState;
+  constructor(props: IFormProps) {
+    super(props);
+    this.state = {
+      value: 'You have not chosen candidates',
+    };
+    this.handleRadioChange = this.handleRadioChange.bind(this);
+    this.handleButtonClick = this.handleButtonClick.bind(this);
+  }
 
-    handleRadioChange(event: React.ChangeEvent<HTMLSelectElement>): void {
-        this.props.changedAppName(event.target.value);
-        this.setState({value: event.target.value});
-    }
+  handleRadioChange(event: React.ChangeEvent<HTMLSelectElement>): void {
+    this.props.changedAppName(event.target.value);
+    this.setState({ value: event.target.value });
+  }
 
-    handleButtonClick(): void {
-        alert(this.state.value);
-    }
+  handleButtonClick(): void {
+    alert(this.state.value);
+  }
 
-    render() {
-        const listOfCandidates = candidates.map( (candidate) => 
+  render() {
+    const listOfCandidates = candidates.map(candidate => 
                 <RadioItem name={candidate} key={candidate} change={this.handleRadioChange}/>
             );
-        return (
+    return (
             <FormWrapper>
                 {listOfCandidates}
                 <Button type="button" onClick={this.handleButtonClick}>Vote</Button>
             </FormWrapper>
-        );
-    }
+    );
+  }
 }
 
-interface MainProps{
-    changeHandler: (changedName:string) => void
+interface IMainProps {
+  changeHandler: (changedName: string) => void;
 }
 
-const Main: React.FC<MainProps> = (props) => {
-    return (
+const Main: React.FC<IMainProps> = (props) => {
+  return (
         <Wrapper>
             <MainTitle>Let's vote</MainTitle>
-            <Div>Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, tempore. Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, tempore. Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, tempore.</Div>
+            <Div>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, tempore.
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, tempore.
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim, tempore.
+            </Div>
             <Form changedAppName={props.changeHandler}/>
         </Wrapper>
-    );
-}
+  );
+};
 
 export default Main;
