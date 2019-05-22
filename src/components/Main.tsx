@@ -43,13 +43,13 @@ const Button = styled.button`
     vertical-align: middle;
     font-size: 15px;
     border-radius: 10px;
-    border: 1px solid black;
+    border: 1px solid ${props => props.theme.blackColor};
     margin: 0 auto;
     margin-top: 50px;
     cursor: pointer;
     :active{
         background-color: ${props => props.theme.buttonActiveColor};
-        color: black;
+        color: ${props => props.theme.blackColor};
     }
 `;
 
