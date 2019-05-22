@@ -61,7 +61,7 @@ interface IRadioButton{
     change(event: any): void
 }
 
-const RadioItem: React.FC<IRadioButton> = (props: IRadioButton) => {
+const RadioItem: React.FC<IRadioButton> = (props) => {
     return (
     <Label>
         <Input type="radio" name="candidate" value={props.name} onChange={props.change}/>
@@ -69,12 +69,17 @@ const RadioItem: React.FC<IRadioButton> = (props: IRadioButton) => {
     </Label>);
 } 
 
-class Form extends React.Component{
-    state: {value: any};
-    constructor(props: any){
+interface FormProps{ }
+interface FormState{ 
+    value: string;
+}
+
+class Form extends React.Component<FormProps, FormState>{
+    state: FormState;
+    constructor(props: FormProps){
         super(props);
         this.state = {
-            value: null,
+            value: 'You have not chosen candidates',
         }
         this.handleRadioChange = this.handleRadioChange.bind(this);
         this.handleButtonClick = this.handleButtonClick.bind(this);

@@ -14,7 +14,7 @@ const HeaderDiv = styled.div`
   padding: 0px 40px;
 `;
 
-const SpanStyle = styled.span`
+const Span = styled.span`
   font-size: 30px;
   font-family: sans-serif;
 `;
@@ -22,31 +22,24 @@ const SpanStyle = styled.span`
 const Image = styled.img`
   height: 40px;
   width: 50px;
-  src: ${props => props.theme.logo};
+  src: ;
 `;
 
 const app = {
   name: 'App'
 }
 
-const SecondTitle: React.FC<{name: string}> = (props: {name: string}) => {
-  return (
-    <SpanStyle>{props.name}</SpanStyle>
-  );
+interface IHeader {
+  name: string,
+  url: string
 }
 
-const FirstTitle: React.FC<{name: string}> = (props: {name: string}) => {
-  return (
-    <SpanStyle>Welcome to {props.name}</SpanStyle>
-  );
-}
-
-const Header: React.FC = () => {
+const Header: React.FC<IHeader> = (props) => {
   return(
       <HeaderDiv>
-        <SecondTitle name={app.name} />
-        <FirstTitle name={app.name} />
-        <Image />
+        <Span>{props.name}</Span>
+        <Span>Welcome to {props.name}</Span>
+        <Image src = {props.url} />
       </HeaderDiv>
   );
 }
@@ -57,7 +50,7 @@ const App: React.FC = () => {
     <ThemeProvider theme = {theme}>
       <>
         <GlobalReset />
-        <Header />
+        <Header name={app.name} url = ''/>
         <Main />
       </>
     </ThemeProvider>
