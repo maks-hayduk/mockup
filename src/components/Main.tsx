@@ -20,7 +20,6 @@ const Div = styled.div`
 const MainTitle = styled(Div)`
     text-align: center;
     font-size: 30px;
-    font-family: sans-serif;
 `;
 
 const Input = styled.input`

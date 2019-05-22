@@ -16,7 +16,6 @@ const HeaderDiv = styled.div`
 
 const Span = styled.span`
   font-size: 30px;
-  font-family: sans-serif;
 `;
 
 const Image = styled.img`
