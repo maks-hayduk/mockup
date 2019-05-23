@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import withCursor from '../components/Cursor/withCursor';
 
 const Div = styled.div`
   width: 80%;
@@ -48,9 +49,11 @@ const ImageTextBlock: React.FC<ICandidate> = (props) => {
   );
 };
 
+const WithCursorBlock = withCursor(ImageTextBlock);
+
 const Candidates: React.FC = () => {
   const listOfBlocks = candidates.map(candidate => 
-    <ImageTextBlock name={candidate} key={candidate}/>
+    <WithCursorBlock name={candidate} key={candidate}/>
   );
   return (
     <>
