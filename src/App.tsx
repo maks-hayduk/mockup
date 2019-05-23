@@ -1,13 +1,16 @@
 import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
-import Main from './components/Main';
 import GlobalReset from './theme/reset';
 import theme from './theme/theme';
+
+import Candidates from './components/Candidates';
+import Main from './components/Main';
+import SideBar from './components/SideBar';
 
 const HeaderDiv = styled.div`
   height: 90px;
   width: 100%;
-  background-color: ${props => props.theme.headerColor};
+  background-color: ${props => props.theme.mainColor};
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -58,13 +61,17 @@ class App extends React.Component {
   }
   render() {
     return (
-      <ThemeProvider theme={theme}>
-        <>
-          <GlobalReset />
-          <Header name={this.state.name} url=""/>
-          <Main changeHandler={this.changeName} />
-        </>
-      </ThemeProvider>
+      <>
+        <GlobalReset />
+        <ThemeProvider theme={theme}>
+          <>
+            <Header name={this.state.name} url=""/>
+            {/* <Main changeHandler={this.changeName} /> */}
+            <SideBar />
+            <Candidates />
+          </>
+        </ThemeProvider>
+      </>
     );
   }
 }
