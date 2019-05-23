@@ -45,7 +45,7 @@ interface IFormState {
 
 class App extends React.Component {
   state: IFormState;
-  constructor(props: any) {
+  constructor(props: {}) {
     super(props);
     this.state = {
       name: 'App'

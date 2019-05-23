@@ -1,15 +1,15 @@
 interface ITheme {
-    headerColor: string,
-    buttonColor: string,
-    buttonActiveColor: string,
-    blackColor: string
+  blackColor: string;
+  buttonActiveColor: string;
+  buttonColor: string;
+  headerColor: string;
 }
 
 const theme: ITheme = {
-    headerColor: '#e8e7e7',
-    buttonColor: '#e5e5e5',
-    buttonActiveColor: '#d6d6d6',
-    blackColor: 'black'
-}
+  blackColor: 'black',
+  buttonActiveColor: '#d6d6d6',
+  buttonColor: '#e5e5e5',
+  headerColor: '#e8e7e7'
+};
 
 export default theme;

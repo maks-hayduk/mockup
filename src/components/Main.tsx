@@ -70,9 +70,9 @@ const RadioItem: React.FC<IRadioButton> = (props) => {
 };
 
 interface IFormProps { 
-  changedAppName: any;
+  changedAppName: (changedName: string) => void;
 }
-interface IFormState { 
+interface IFormState {
   value: string;
 }
 
