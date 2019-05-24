@@ -57,8 +57,12 @@ const BlackBox: React.FC<IMouse> = (props) => {
   );
 };
 
-class CursorRender extends React.Component<{}, IFormState> {
-  constructor(props: {}) {
+interface IFormProps {
+  render: (x: number, y: number) => JSX.Element;
+}
+
+class CursorRender extends React.Component<IFormProps, IFormState> {
+  constructor(props: IFormProps) {
     super(props);
     this.state = {
       isVisable: false,
@@ -71,6 +75,7 @@ class CursorRender extends React.Component<{}, IFormState> {
       x: event.clientX,
       y: event.clientY
     });
+    console.log(this.state);
   }
   handleMouseOut = (): void => {
     this.setState({
@@ -91,10 +96,16 @@ class CursorRender extends React.Component<{}, IFormState> {
       <Div onMouseMove={this.handleMouseMove} onMouseOut={this.handleMouseOut} onMouseOver={this.handleMouseOver}>
           {listOfLinks}
       </Div>
-      {this.state.isVisable ? (<BlackBox x={this.state.x} y={this.state.y} />) : (<></>)}
+      {this.state.isVisable ? this.props.render(this.state.x, this.state.y) : null}
       </>
     );
   }
 }
 
-export default CursorRender;
+const CursorBox: React.FC = () => {
+  return (
+    <CursorRender render={(x: number, y: number) => <BlackBox x={x} y={y} />}/>
+  );
+};
+
+export default CursorBox;
