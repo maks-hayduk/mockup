@@ -1,11 +1,11 @@
 import React from 'react';
-import styled, { ThemeProvider } from 'styled-components';
-import GlobalReset from './theme/reset';
-import theme from './theme/theme';
-
 import Candidates from './components/Candidates';
 import Main from './components/Main';
 import SideBar from './components/SideBar';
+
+import styled, { ThemeProvider } from 'styled-components';
+import GlobalReset from './theme/reset';
+import theme from './theme/theme';
 
 const HeaderDiv = styled.div`
   height: 90px;

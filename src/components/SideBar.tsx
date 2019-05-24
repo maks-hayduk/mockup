@@ -2,15 +2,15 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Div = styled.div`
-    width: 20%;
-    min-height: calc(100vh - 90px);
-    font-size: 16px;
-    float: left;
-    padding-top: 50px;
-    background-color: ${props => props.theme.mainColor};
-    display: flex;
-    flex-direction: column;
-    border-top: 1px solid ${props => props.theme.whiteColor}
+  width: 20%;
+  min-height: calc(100vh - 90px);
+  font-size: 16px;
+  float: left;
+  padding-top: 50px;
+  background-color: ${props => props.theme.mainColor};
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid ${props => props.theme.whiteColor}
 `;
 
 const ATag = styled.a`
@@ -41,39 +41,45 @@ const LinkItem: React.FC<ILink> = (props) => {
 };
 
 interface IMouse {
-  display: string;
+  x: number;
+  y: number;
+}
+
+interface IFormState {
+  isVisable: boolean;
   x: number;
   y: number;
 }
 
 const BlackBox: React.FC<IMouse> = (props) => {
   return (
-    <Box style={{ left: props.x + 20, top: props.y + 10, display: props.display }} />
+    <Box style={{ left: props.x + 20, top: props.y + 10 }} />
   );
 };
 
-class CursorRender extends React.Component {
-  state: IMouse;
+class CursorRender extends React.Component<{}, IFormState> {
   constructor(props: {}) {
     super(props);
-    this.handleMouseMove = this.handleMouseMove.bind(this);
-    this.handleMouseOut = this.handleMouseOut.bind(this);
     this.state = {
-      display: 'none',
+      isVisable: false,
       x: 0,
       y: 0
     };
   }
-  handleMouseMove(event: React.MouseEvent): void {
+  handleMouseMove = (event: React.MouseEvent): void => {
     this.setState({
-      display: 'block',
       x: event.clientX,
       y: event.clientY
     });
   }
-  handleMouseOut(): void {
+  handleMouseOut = (): void => {
     this.setState({
-      display: 'none'
+      isVisable: false
+    });
+  }
+  handleMouseOver = (): void => {
+    this.setState({
+      isVisable: true
     });
   }
   render() {
@@ -82,10 +88,10 @@ class CursorRender extends React.Component {
     );
     return (
       <>
-      <Div onMouseMove={this.handleMouseMove} onMouseOut={this.handleMouseOut}>
+      <Div onMouseMove={this.handleMouseMove} onMouseOut={this.handleMouseOut} onMouseOver={this.handleMouseOver}>
           {listOfLinks}
       </Div>
-      <BlackBox x={this.state.x} y={this.state.y} display={this.state.display} />
+      {this.state.isVisable ? (<BlackBox x={this.state.x} y={this.state.y} />) : (<></>)}
       </>
     );
   }

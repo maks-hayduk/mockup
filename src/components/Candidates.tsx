@@ -1,6 +1,7 @@
 import React from 'react';
-import styled from 'styled-components';
 import withCursor from '../components/Cursor/withCursor';
+
+import styled from 'styled-components';
 
 const Div = styled.div`
   width: 80%;
@@ -28,7 +29,7 @@ const ImageDiv = styled.div`
 `;
 
 const ImgBlock = styled.div`
-  min-width: 38%;
+  min-width: 250px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -58,9 +59,9 @@ const Candidates: React.FC = () => {
   return (
     <>
       <Div>Candidates</Div>
-        <Wrapper>
-          {listOfBlocks}
-        </Wrapper>
+      <Wrapper>
+        {listOfBlocks}
+      </Wrapper>
     </>
   );
 };

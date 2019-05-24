@@ -9,49 +9,59 @@ const Box = styled.div`
 `;
 
 interface IMouse {
-  display: string;
+  x: number;
+  y: number;
+}
+
+interface IFormState {
+  isVisable: boolean;
   x: number;
   y: number;
 }
   
 const BlackBox: React.FC<IMouse> = (props) => {
   return (
-    <Box style={{ left: props.x + 20, top: props.y + 10, display: props.display }} />
+    <Box style={{ left: props.x + 20, top: props.y + 10 }} />
   );
 };
 
 const withCursor = <OriginalProps extends {}>(WrappedComponent: React.ComponentType<OriginalProps>) => {
-  return class extends React.Component<OriginalProps, IMouse> {
-    state: IMouse;
+  return class extends React.Component<OriginalProps, IFormState> {
     constructor(props: OriginalProps) {
       super(props);
       this.state = {
-        display: 'none',
+        isVisable: false,
         x: 0,
         y: 0
       };
-      this.handleMouseMove = this.handleMouseMove.bind(this);
-      this.handleMouseOut = this.handleMouseOut.bind(this);
     }
-    handleMouseMove(event: React.MouseEvent): void {
+    handleMouseMove = (event: React.MouseEvent): void => {
       this.setState({
-        display: 'block',
         x: event.clientX,
         y: event.clientY
       });
     }
-    handleMouseOut(): void {
+    handleMouseOut = (): void => {
       this.setState({
-        display: 'none'
+        isVisable: false
+      });
+    }
+    handleMouseOver = (): void => {
+      this.setState({
+        isVisable: true
       });
     }
     render() {
       return (
         <>
-          <div style={{ width: '35%' }} onMouseMove={this.handleMouseMove} onMouseOut={this.handleMouseOut}>
+          <div 
+            onMouseMove={this.handleMouseMove} 
+            onMouseOut={this.handleMouseOut} 
+            onMouseOver={this.handleMouseOver} 
+          >
             <WrappedComponent {...this.props}/>
           </div>
-          <BlackBox x={this.state.x} y={this.state.y} display={this.state.display} />
+          {this.state.isVisable ? (<BlackBox x={this.state.x} y={this.state.y} />) : (<></>)}
         </>
       );
     }
