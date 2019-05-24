@@ -26,16 +26,19 @@ const Input = styled.input`
     margin-right: 7px;
     font-size: 18px;
 `;
+
 const Label = styled.label`
     font-size: 18px;
     padding: 15px 0;
 `;
+
 const FormWrapper = styled.form`
     width: 90%;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
 `;
+
 const Button = styled.button`
     width: 170px;
     height: 50px;
@@ -53,7 +56,7 @@ const Button = styled.button`
     }
 `;
 
-const candidates: string[] = ['Candidate #1', 'Candidate #2', 'Candidate #3'];
+const candidates: string[] = ['Candidate #1', 'Candidate #2'];
 
 interface IRadioButton {
   name: string;
@@ -72,6 +75,7 @@ const RadioItem: React.FC<IRadioButton> = (props) => {
 interface IFormProps { 
   changedAppName: (changedName: string) => void;
 }
+
 interface IFormState {
   value: string;
 }
