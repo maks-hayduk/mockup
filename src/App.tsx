@@ -6,6 +6,7 @@ import SideBar from './components/SideBar';
 
 import GlobalReset from './theme/reset';
 import theme from './theme/theme';
+import { media } from './theme/media';
 
 const HeaderDiv = styled.div`
   height: 90px;
@@ -17,9 +18,7 @@ const HeaderDiv = styled.div`
   padding: 0px 40px;
 
   .left-name{
-    @media (max-width: ${props => props.theme.breakpoints[0]}) {
-      display: none;
-    }
+    ${media.phone`display: none;`}
   }
 `;
 

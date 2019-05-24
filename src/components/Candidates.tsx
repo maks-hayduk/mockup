@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Flex, Box } from '@rebass/grid';
 import withCursor from '../components/Cursor/withCursor';
+import { media } from '../theme/media';
 
 const Div = styled.div`
   width: 80%;
@@ -14,11 +15,11 @@ const Div = styled.div`
   .wrapper{
     padding-top: 50px;
   }
-  @media (max-width: ${props => props.theme.breakpoints[0]}) {
+  ${media.phone`
     float: none;
     margin: 0 auto;
     padding-top: 100px;
-  }
+  `}
 `;
 
 const ImgBlock = styled.div`
@@ -27,15 +28,14 @@ const ImgBlock = styled.div`
   flex-direction: column;
   align-items: center;
 
+  ${media.phone`margin-bottom: 80px;`}
   .image-div{
     height: 250px;
     width: 100%;
     border: 1px solid ${props => props.theme.blackColor}
     margin-bottom: 20px;
 
-    @media (max-width: ${props => props.theme.breakpoints[0]}) {
-      width: 100%
-    }
+    ${media.phone`width: 100%;`}
   }
 `;
 
@@ -49,7 +49,7 @@ const ImageTextBlock: React.FC<ICandidate> = (props) => {
   return (
     <ImgBlock>
       <div className="image-div" />
-      <Box mb={[6, 0]}>{props.name}</Box>
+      <Box>{props.name}</Box>
     </ImgBlock>
   );
 };

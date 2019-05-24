@@ -1,6 +1,7 @@
 import React from 'react';
 import { Flex, Box } from '@rebass/grid';
 import styled from 'styled-components';
+import { media } from '../theme/media';
 
 const Div = styled.div`
   width: 20%;
@@ -11,12 +12,12 @@ const Div = styled.div`
   background-color: ${props => props.theme.mainColor};
   border-top: 1px solid ${props => props.theme.whiteColor}
 
-  @media (max-width: ${props => props.theme.breakpoints[0]}) {
-    width: 100%
+  ${media.phone`
+    width: 100%;
     height: 40px;
     padding: 0;
     padding-top: 10px;
-  }
+  `}
 `;
 
 const ATag = styled.a`
@@ -24,9 +25,7 @@ const ATag = styled.a`
   color: ${props => props.theme.blackColor}
   padding-left: 25px;
   padding-bottom: 7px;
-  @media (max-width: ${props => props.theme.breakpoints[0]}){
-    padding: 0;
-  }
+  ${media.phone`padding: 0;`}
 `;
 
 const BoxDiv = styled.div`
