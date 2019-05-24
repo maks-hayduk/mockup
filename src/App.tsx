@@ -15,6 +15,12 @@ const HeaderDiv = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 0px 40px;
+
+  .left-name{
+    @media (max-width: ${props => props.theme.breakpoints[0]}) {
+      display: none;
+    }
+  }
 `;
 
 const Span = styled.span`
@@ -35,7 +41,7 @@ interface IHeader {
 const Header: React.FC<IHeader> = (props) => {
   return(
       <HeaderDiv>
-        <Span>{props.name}</Span>
+        <Span className="left-name">{props.name}</Span>
         <Span>Welcome to {props.name}</Span>
         <Image src={props.url} />
       </HeaderDiv>

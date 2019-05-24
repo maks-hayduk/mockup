@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Flex, Box } from '@rebass/grid';
 import withCursor from '../components/Cursor/withCursor';
 
 const Div = styled.div`
@@ -12,9 +13,11 @@ const Div = styled.div`
 
   .wrapper{
     padding-top: 50px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
+  }
+  @media (max-width: ${props => props.theme.breakpoints[0]}) {
+    float: none;
+    margin: 0 auto;
+    padding-top: 100px;
   }
 `;
 
@@ -29,6 +32,10 @@ const ImgBlock = styled.div`
     width: 100%;
     border: 1px solid ${props => props.theme.blackColor}
     margin-bottom: 20px;
+
+    @media (max-width: ${props => props.theme.breakpoints[0]}) {
+      width: 100%
+    }
   }
 `;
 
@@ -42,7 +49,7 @@ const ImageTextBlock: React.FC<ICandidate> = (props) => {
   return (
     <ImgBlock>
       <div className="image-div" />
-      <span>{props.name}</span>
+      <Box mb={[6, 0]}>{props.name}</Box>
     </ImgBlock>
   );
 };
@@ -51,14 +58,16 @@ const WithCursorBlock = withCursor(ImageTextBlock);
 
 const Candidates: React.FC = () => {
   const listOfBlocks = candidates.map(candidate => 
-    <WithCursorBlock name={candidate} key={candidate}/>
+    <Box key={candidate}>
+      <WithCursorBlock name={candidate}/>
+    </Box>
   );
   return (
     <>
       <Div>Candidates
-        <div className="wrapper">
+        <Flex className="wrapper" flexDirection={['column', 'row']} justifyContent={['space-around']}>
           {listOfBlocks}
-        </div>
+        </Flex>
       </Div>
     </>
   );
