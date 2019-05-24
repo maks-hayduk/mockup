@@ -61,7 +61,7 @@ const withCursor = <OriginalProps extends {}>(WrappedComponent: React.ComponentT
           >
             <WrappedComponent {...this.props}/>
           </div>
-          {this.state.isVisable ? (<BlackBox x={this.state.x} y={this.state.y} />) : (<></>)}
+          {this.state.isVisable && <BlackBox x={this.state.x} y={this.state.y} />}
         </>
       );
     }

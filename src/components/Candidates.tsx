@@ -1,7 +1,6 @@
 import React from 'react';
-import withCursor from '../components/Cursor/withCursor';
-
 import styled from 'styled-components';
+import withCursor from '../components/Cursor/withCursor';
 
 const Div = styled.div`
   width: 80%;
@@ -11,7 +10,7 @@ const Div = styled.div`
   float: right;
   padding-top: 50px;
 
-  .Wrapper{
+  .wrapper{
     padding-top: 50px;
     display: flex;
     flex-direction: row;
@@ -25,7 +24,7 @@ const ImgBlock = styled.div`
   flex-direction: column;
   align-items: center;
 
-  .ImageDiv{
+  .image-div{
     height: 250px;
     width: 100%;
     border: 1px solid ${props => props.theme.blackColor}
@@ -42,7 +41,7 @@ interface ICandidate {
 const ImageTextBlock: React.FC<ICandidate> = (props) => {
   return (
     <ImgBlock>
-      <div className="ImageDiv" />
+      <div className="image-div" />
       <span>{props.name}</span>
     </ImgBlock>
   );
@@ -57,7 +56,7 @@ const Candidates: React.FC = () => {
   return (
     <>
       <Div>Candidates
-        <div className="Wrapper">
+        <div className="wrapper">
           {listOfBlocks}
         </div>
       </Div>

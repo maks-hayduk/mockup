@@ -1,9 +1,9 @@
 import React from 'react';
+import styled, { ThemeProvider } from 'styled-components';
 import Candidates from './components/Candidates';
 import Main from './components/Main';
 import SideBar from './components/SideBar';
 
-import styled, { ThemeProvider } from 'styled-components';
 import GlobalReset from './theme/reset';
 import theme from './theme/theme';
 

@@ -40,6 +40,17 @@ const LinkItem: React.FC<ILink> = (props) => {
   );
 };
 
+const ListOfLinks: React.FC = () => {
+  const listOfLinks = links.map(link => 
+    <LinkItem name={link} key={link}/>
+  );
+  return(
+    <>
+      {listOfLinks}
+    </>
+  );
+};
+
 interface IMouse {
   x: number;
   y: number;
@@ -88,15 +99,12 @@ class CursorRender extends React.Component<IFormProps, IFormState> {
     });
   }
   render() {
-    const listOfLinks = links.map(link => 
-      <LinkItem name={link} key={link}/>
-    );
     return (
       <>
       <Div onMouseMove={this.handleMouseMove} onMouseOut={this.handleMouseOut} onMouseOver={this.handleMouseOver}>
-          {listOfLinks}
+          <ListOfLinks />
       </Div>
-      {this.state.isVisable ? this.props.render(this.state.x, this.state.y) : null}
+      {this.state.isVisable && this.props.render(this.state.x, this.state.y)}
       </>
     );
   }
