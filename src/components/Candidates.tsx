@@ -65,7 +65,7 @@ const Candidates: React.FC = () => {
   return (
     <>
       <Div>Candidates
-        <Flex className="wrapper" flexDirection={['column', 'row']} justifyContent={['space-around']}>
+        <Flex className="wrapper" flexDirection={['column', 'row']} justifyContent="space-around">
           {listOfBlocks}
         </Flex>
       </Div>

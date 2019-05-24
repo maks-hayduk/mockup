@@ -96,7 +96,6 @@ class CursorRender extends React.Component<IFormProps, IFormState> {
       x: event.clientX,
       y: event.clientY
     });
-    console.log(this.state);
   }
   handleMouseOut = (): void => {
     this.setState({
@@ -110,11 +109,12 @@ class CursorRender extends React.Component<IFormProps, IFormState> {
   }
   render() {
     return (
-      <Div>
+      <Div 
+        onMouseMove={this.handleMouseMove} 
+        onMouseOut={this.handleMouseOut} 
+        onMouseOver={this.handleMouseOver}
+      >
         <Flex 
-          onMouseMove={this.handleMouseMove} 
-          onMouseOut={this.handleMouseOut} 
-          onMouseOver={this.handleMouseOver}
           flexDirection={['row', 'column']}
           justifyContent={['space-around']}
         >
