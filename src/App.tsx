@@ -4,7 +4,7 @@ import Candidates from './components/Candidates';
 import Main from './components/Main';
 import SideBar from './components/SideBar';
 
-import { media, theme, GlobalReset } from './theme/index';
+import { media, theme, GlobalReset } from './theme';
 
 const HeaderDiv = styled.div`
   height: 90px;

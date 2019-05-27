@@ -1,8 +1,8 @@
 import React from 'react';
+import { Flex, Box } from '@rebass/grid';
 import styled from 'styled-components';
 
-import { Flex, Box } from '@rebass/grid';
-import { media } from '../theme/index';
+import { media } from '../theme';
 
 const Div = styled.div`
   width: 20%;
