@@ -4,8 +4,7 @@ import Candidates from './components/Candidates';
 import Main from './components/Main';
 import SideBar from './components/SideBar';
 
-import GlobalReset from './theme/reset';
-import theme from './theme/theme';
+import { media, theme, GlobalReset } from './theme';
 
 const HeaderDiv = styled.div`
   height: 90px;
@@ -15,6 +14,10 @@ const HeaderDiv = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 0px 40px;
+
+  .left-name{
+    ${media.tablet`display: none;`}
+  }
 `;
 
 const Span = styled.span`
@@ -35,7 +38,7 @@ interface IHeader {
 const Header: React.FC<IHeader> = (props) => {
   return(
       <HeaderDiv>
-        <Span>{props.name}</Span>
+        <Span className="left-name">{props.name}</Span>
         <Span>Welcome to {props.name}</Span>
         <Image src={props.url} />
       </HeaderDiv>
