@@ -4,9 +4,7 @@ import Candidates from './components/Candidates';
 import Main from './components/Main';
 import SideBar from './components/SideBar';
 
-import GlobalReset from './theme/reset';
-import theme from './theme/theme';
-import { media } from './theme/media';
+import { media, theme, GlobalReset } from './theme/index';
 
 const HeaderDiv = styled.div`
   height: 90px;
@@ -18,7 +16,7 @@ const HeaderDiv = styled.div`
   padding: 0px 40px;
 
   .left-name{
-    ${media.phone`display: none;`}
+    ${media.tablet`display: none;`}
   }
 `;
 

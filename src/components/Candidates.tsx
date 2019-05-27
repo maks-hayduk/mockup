@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Flex, Box } from '@rebass/grid';
 import withCursor from '../components/Cursor/withCursor';
-import { media } from '../theme/media';
+
+import { Flex, Box } from '@rebass/grid';
+import { media } from '../theme/index';
 
 const Div = styled.div`
   width: 80%;
@@ -15,7 +16,7 @@ const Div = styled.div`
   .wrapper{
     padding-top: 50px;
   }
-  ${media.phone`
+  ${media.tablet`
     float: none;
     margin: 0 auto;
     padding-top: 100px;
@@ -28,15 +29,16 @@ const ImgBlock = styled.div`
   flex-direction: column;
   align-items: center;
 
-  ${media.phone`margin-bottom: 80px;`}
   .image-div{
     height: 250px;
     width: 100%;
     border: 1px solid ${props => props.theme.blackColor}
     margin-bottom: 20px;
 
-    ${media.phone`width: 100%;`}
+    ${media.tablet`width: 100%;`}
   }
+
+  ${media.tablet`margin-bottom: 80px;`}
 `;
 
 const candidates: string[] = ['Candidate #1', 'Candidate #2'];
