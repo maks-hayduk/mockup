@@ -1,6 +1,8 @@
 // tslint:disable
 import React from 'react';
 import { createStore, Dispatch } from 'redux';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import todoApp from './Redux';
 import AddTodo from './Redux/AddTodo';
 import TodoList from './Redux/TodoList';
@@ -8,8 +10,6 @@ import Footer from './Redux/Footer';
 import { IState } from './Redux/interfaces';
 import { getVisibleTodos } from './Redux/visabilityFilter';
 import { addTodo, toggleTodo, filterTodo } from './Redux/actions';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 
 const store = createStore(todoApp);
 
