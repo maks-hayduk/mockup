@@ -4,7 +4,7 @@ import AddTodo from './AddTodo';
 import TodoList from './TodoList';
 import Footer from './Footer';
 import { IState } from '../interfaces';
-import { getVisibleTodos } from '../reducers/visabilityFilter';
+import getVisibleTodos from '../selectVisableTodos';
 
 let nextId = 0;
 
