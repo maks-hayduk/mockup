@@ -1,52 +1,71 @@
 // tslint:disable
 import React from 'react';
-import { createStore } from 'redux';
+import { createStore, Dispatch } from 'redux';
 import todoApp from './Redux';
 import AddTodo from './Redux/AddTodo';
 import TodoList from './Redux/TodoList';
 import Footer from './Redux/Footer';
 import { IState } from './Redux/interfaces';
 import { getVisibleTodos } from './Redux/visabilityFilter';
-import {ADD_TODO, TOGGLE_TODO, SET_VISABILITY_FILTER } from './Redux/actionTypes';
+import { addTodo, toggleTodo, filterTodo } from './Redux/actions';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 
 const store = createStore(todoApp);
 
-interface IProps {
-  todos: IState[];
-  visabilityFilter: any;
-}
-
 let nextId = 0;
 
-const TodoApp: React.FC <IProps> = ({todos, visabilityFilter}) => {
-  const visibleTodos = getVisibleTodos(todos, visabilityFilter);
-  return(
-    <div>
-      <AddTodo onAddClick={ text => 
-        store.dispatch({
-          type: ADD_TODO,
-          text: text,
-          id: nextId++
-        })
-      } />
-      
-      <TodoList 
-        todos={visibleTodos} 
-        onTodoClick={id => 
-          store.dispatch({
-            type: TOGGLE_TODO,
-            id
-          })
-        } />
-
-      <Footer visabilityFilter={visabilityFilter} onFilterClick={ filter => 
-        store.dispatch({
-          type: SET_VISABILITY_FILTER,
-          filter
-        })
-      } />
-    </div>
-  )
+interface IProps {
+  todos: IState[];
+  visabilityFilter: string;
+  addTodo: (text: string, id: number) => void;
+  toggleTodo: (id: number) => void;
+  filterTodo: (filter: string) => void;
 }
 
-export { TodoApp, store };
+class TodoApp extends React.Component <IProps> {
+
+  render() {
+    const { todos, visabilityFilter, addTodo, toggleTodo, filterTodo } = this.props;
+    const visibleTodos = getVisibleTodos(todos, visabilityFilter);
+    return(
+      <div>
+        <AddTodo onAddClick={ text => {
+          addTodo(text, nextId)
+          nextId++;
+        }
+        } />
+        
+        <TodoList 
+          todos={visibleTodos} 
+          onTodoClick={id => 
+            toggleTodo(id)
+          } />
+
+        <Footer visabilityFilter={visabilityFilter} onFilterClick={ filter => 
+          filterTodo(filter)
+        } />
+      </div>
+    )
+  }
+}
+
+interface IPropsToProps {
+  todos: IState[];
+  visabilityFilter: string;
+}
+
+const mapStateToProps = (state: IPropsToProps) => ({
+  todos: state.todos,
+  visabilityFilter: state.visabilityFilter
+})
+
+const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators({
+  addTodo,
+  toggleTodo,
+  filterTodo
+}, dispatch)
+
+const Todo = connect(mapStateToProps, mapDispatchToProps)(TodoApp);
+
+export { store, Todo };
