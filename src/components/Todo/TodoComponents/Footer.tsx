@@ -1,5 +1,5 @@
 import React from 'react';
-import { SHOW_ACTIVE, SHOW_ALL, SHOW_COMPLETED } from '../actionTypes';
+import { Visability } from '../../../consts';
 
 interface ILink {
   filter: string;
@@ -30,17 +30,17 @@ const Footer: React.FC <IFooter> = ({ visabilityFilter, onFilterClick }) => {
     <p>
       Show:
       <FilterLink 
-      filter={SHOW_ALL} 
+      filter={Visability.SHOW_ALL} 
       currentFilter={visabilityFilter} 
       onClick={onFilterClick}>All</FilterLink>
       {' '}
       <FilterLink 
-      filter={SHOW_ACTIVE} 
+      filter={Visability.SHOW_ACTIVE} 
       currentFilter={visabilityFilter} 
       onClick={onFilterClick}>Active</FilterLink>
       {' '}
       <FilterLink 
-      filter={SHOW_COMPLETED} 
+      filter={Visability.SHOW_COMPLETED} 
       currentFilter={visabilityFilter} 
       onClick={onFilterClick}>Completed</FilterLink>
     </p>

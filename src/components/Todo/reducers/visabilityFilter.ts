@@ -1,5 +1,5 @@
 import { SET_VISABILITY_FILTER } from '../actionTypes';
-import { Visability } from '../../consts';
+import { Visability } from '../../../consts';
 import { IAction, IState } from '../interfaces';
 
 export const visabilityFilter = (state: string = Visability.SHOW_ALL, action: IAction) => {
