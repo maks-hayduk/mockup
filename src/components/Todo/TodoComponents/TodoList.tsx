@@ -1,5 +1,5 @@
 import React from 'react';
-import { IState } from '../Redux/interfaces';
+import { IState } from '../interfaces';
 
 interface ITodo {
   onClick: () => void;

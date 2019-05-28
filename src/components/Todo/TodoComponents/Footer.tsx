@@ -1,5 +1,5 @@
 import React from 'react';
-import { SHOW_ACTIVE, SHOW_ALL, SHOW_COMPLETED } from './actionTypes';
+import { SHOW_ACTIVE, SHOW_ALL, SHOW_COMPLETED } from '../actionTypes';
 
 interface ILink {
   filter: string;

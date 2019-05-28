@@ -1,5 +1,5 @@
-import { ADD_TODO, TOGGLE_TODO } from './actionTypes'; 
-import { IAction, IState } from './interfaces';
+import { ADD_TODO, TOGGLE_TODO } from '../actionTypes'; 
+import { IAction, IState } from '../interfaces';
 
 const todos = (state: IState[] = [], action: IAction) => {
   switch (action.type) {
