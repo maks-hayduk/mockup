@@ -1,6 +1,6 @@
 export interface IAction {
   type: string;
-  id?: number;
+  id: number;
   text?: string;
   filter?: string;
 }
