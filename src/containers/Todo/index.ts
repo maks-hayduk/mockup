@@ -1,10 +1,14 @@
-import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import TodoApp from '../components/Todo/TodoComponents/Todo';
-import { IState } from '../components/Todo/interfaces';
-import { addTodo, toggleTodo, filterTodo } from '../components/Todo/actions';
-import { selectTodos, selectVisabilityFilter } from '../components/Todo/select';
+import { bindActionCreators, Dispatch } from 'redux';
+import TodoApp from './Todo';
+import { 
+  IState,
+  addTodo,
+  toggleTodo,
+  filterTodo,
+  selectTodos,
+  selectVisabilityFilter 
+} from '../../store/domains/todo';
 
 interface IPropsToProps {
   todos: IState[];

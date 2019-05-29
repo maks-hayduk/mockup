@@ -1,4 +1,4 @@
-import { IState } from '../../components/Todo/interfaces';
+import { IState } from '../todo/interfaces';
 
 interface IStateToProps {
   todos: IState[];

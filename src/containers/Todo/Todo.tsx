@@ -1,11 +1,8 @@
-// tslint:disable
 import React from 'react';
-import AddTodo from './AddTodo';
-import TodoList from './TodoList';
-import Footer from './Footer';
-import { IState } from '../interfaces';
-import getVisibleTodos from '../selectors';
-import uuid from '../../../uniqueId';
+import { AddTodo, TodoList ,Footer } from '../../components/Todo';
+import { IState } from '../../store/domains/todo/interfaces';
+import getVisibleTodos from '../../store/domains/todo/getVisableTodos';
+import { uuid } from '../../utils';
 
 interface IProps {
   todos: IState[];
@@ -16,11 +13,10 @@ interface IProps {
 }
 
 class TodoApp extends React.Component <IProps> {
-
   render() {
     const { todos, visabilityFilter, addTodo, toggleTodo, filterTodo } = this.props;
     const visibleTodos = getVisibleTodos(todos, visabilityFilter);
-    return(
+    return (
       <div>
         <AddTodo onAddClick={ text => {
           let nextId = uuid();

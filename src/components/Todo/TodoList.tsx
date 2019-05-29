@@ -1,5 +1,5 @@
 import React from 'react';
-import { IState } from '../interfaces';
+import { IState } from '../../store/domains/todo/interfaces';
 
 interface ITodo {
   onClick: () => void;

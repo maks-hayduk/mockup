@@ -1,4 +1,4 @@
-import { VisabilityList } from '../../consts';
+import { VisabilityList } from '../../../consts';
 import { IState } from './interfaces';
 
 const getVisibleTodos = (todos: IState[], filter: string) => {
