@@ -4,9 +4,8 @@ import AddTodo from './AddTodo';
 import TodoList from './TodoList';
 import Footer from './Footer';
 import { IState } from '../interfaces';
-import getVisibleTodos from '../selectVisableTodos';
-
-let nextId = 0;
+import getVisibleTodos from '../selectors';
+import uuid from '../../../uniqueId';
 
 interface IProps {
   todos: IState[];
@@ -24,20 +23,14 @@ class TodoApp extends React.Component <IProps> {
     return(
       <div>
         <AddTodo onAddClick={ text => {
+          let nextId = uuid();
           addTodo(text, nextId)
-          nextId++;
         }
         } />
         
-        <TodoList 
-          todos={visibleTodos} 
-          onTodoClick={id => 
-            toggleTodo(id)
-          } />
+        <TodoList todos={visibleTodos} onTodoClick={toggleTodo} />
 
-        <Footer visabilityFilter={visabilityFilter} onFilterClick={ filter => 
-          filterTodo(filter)
-        } />
+        <Footer visabilityFilter={visabilityFilter} onFilterClick={filterTodo} />
       </div>
     )
   }

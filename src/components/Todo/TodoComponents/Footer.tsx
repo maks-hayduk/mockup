@@ -1,5 +1,5 @@
 import React from 'react';
-import { Visability } from '../../../consts';
+import { VisabilityList } from '../../../consts';
 
 interface ILink {
   filter: string;
@@ -18,7 +18,7 @@ const FilterLink: React.FC<ILink> = ({ filter, children, currentFilter, onClick 
           onClick(filter);
         }}>{children}</a>
   );
-} 
+}; 
 
 interface IFooter {
   visabilityFilter: string;
@@ -26,23 +26,24 @@ interface IFooter {
 }
 
 const Footer: React.FC <IFooter> = ({ visabilityFilter, onFilterClick }) => {
+  let filterLinks = [];
+  for (const i in VisabilityList) {
+    filterLinks.push(i);
+  }
   return(
     <p>
       Show:
-      <FilterLink 
-      filter={Visability.SHOW_ALL} 
-      currentFilter={visabilityFilter} 
-      onClick={onFilterClick}>All</FilterLink>
-      {' '}
-      <FilterLink 
-      filter={Visability.SHOW_ACTIVE} 
-      currentFilter={visabilityFilter} 
-      onClick={onFilterClick}>Active</FilterLink>
-      {' '}
-      <FilterLink 
-      filter={Visability.SHOW_COMPLETED} 
-      currentFilter={visabilityFilter} 
-      onClick={onFilterClick}>Completed</FilterLink>
+      {filterLinks.map(filter => {
+        const filterName = filter.charAt(0) + filter.toLowerCase().slice(1);
+
+        return ( <FilterLink 
+                    key={filter} 
+                    filter={filter}
+                    currentFilter={visabilityFilter}
+                    onClick={onFilterClick}
+                  >{filterName} </FilterLink>
+        );
+      })}
     </p>
   );
 };

@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import App from './App';
 import store from './components/Todo/store';
-import Todo from './components/Todo';
+import Todo from './containers/Todo';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(

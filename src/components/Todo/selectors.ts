@@ -1,13 +1,13 @@
-import { Visability } from '../../consts';
+import { VisabilityList } from '../../consts';
 import { IState } from './interfaces';
 
 const getVisibleTodos = (todos: IState[], filter: string) => {
   switch (filter) {
-    case Visability.SHOW_ALL:
+    case VisabilityList.ALL:
       return todos;
-    case Visability.SHOW_ACTIVE:
+    case VisabilityList.ACTIVE:
       return todos.filter(todo => !todo.completed);
-    case Visability.SHOW_COMPLETED:
+    case VisabilityList.COMPLETED:
       return todos.filter(todo => todo.completed);
     default:
       return todos;

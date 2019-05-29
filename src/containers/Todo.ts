@@ -1,9 +1,9 @@
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import TodoApp from './TodoComponents/Todo';
-import { IState } from './interfaces';
-import { addTodo, toggleTodo, filterTodo } from './actions';
+import TodoApp from '../components/Todo/TodoComponents/Todo';
+import { IState } from '../components/Todo/interfaces';
+import { addTodo, toggleTodo, filterTodo } from '../components/Todo/actions';
 
 interface IPropsToProps {
   todos: IState[];
