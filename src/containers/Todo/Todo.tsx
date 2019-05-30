@@ -2,14 +2,14 @@ import React from 'react';
 import { AddTodo, TodoList , Footer } from '../../components/Todo';
 import { ITodo } from '../../store/domains/todo/interfaces';
 import { uuid } from '../../utils';
-import {} from '../../store/domains/todo/actionTypes'
+import { addTodoAction, toggleTodoAction, filterTodoAction } from '../../store/domains/todo/actions';
 
 interface IProps {
   visabilityFilter: string;
   visableTodos: ITodo[];
-  addTodo: (text: string, id: string) => void;
-  toggleTodo: (id: string) => void;
-  filterTodo: (filter: string) => void;
+  addTodo: addTodoAction;
+  toggleTodo: toggleTodoAction;
+  filterTodo: filterTodoAction;
 }
 
 class TodoApp extends React.Component <IProps> {

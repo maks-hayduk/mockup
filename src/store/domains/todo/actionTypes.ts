@@ -8,7 +8,6 @@ export interface addTodoActionType {
   type: ActionTypeKeys.ADD_TODO;
   text: string;
   id: string;
-  completed: boolean;
 }
 
 export interface toggleTodoActionType {

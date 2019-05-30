@@ -6,7 +6,6 @@ import {
   addTodo,
   toggleTodo,
   filterTodo,
-  selectTodos,
   selectVisabilityFilter,
   selectFilteredTodos
 } from '../../store/domains/todo';
