@@ -1,5 +1,5 @@
 import React from 'react';
-import { AddTodo, TodoList ,Footer } from '../../components/Todo';
+import { AddTodo, TodoList , Footer } from '../../components/Todo';
 import { IState } from '../../store/domains/todo/interfaces';
 import getVisibleTodos from '../../store/domains/todo/getVisableTodos';
 import { uuid } from '../../utils';
@@ -28,7 +28,7 @@ class TodoApp extends React.Component <IProps> {
 
         <Footer visabilityFilter={visabilityFilter} onFilterClick={filterTodo} />
       </div>
-    )
+    );
   }
 }
 

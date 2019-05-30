@@ -3,11 +3,7 @@ interface IEnumObject {
 }
 
 const getEnumValues = (enumObject: IEnumObject) => {
-  let filterLinks = [];
-  for (const i in enumObject) {
-    filterLinks.push(i);
-  }
-  return filterLinks;
+  return Object.values(enumObject).map(value => value);
 };
 
 export default getEnumValues;

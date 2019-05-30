@@ -1,5 +1,5 @@
 import uuid from './uuid';
 import getEnumValues from './getEnumValues';
-import convertToLowerCase from './valueToLowerCase';
+import convertToLowerCase from './strToLowerCase';
 
 export { uuid, getEnumValues, convertToLowerCase };
