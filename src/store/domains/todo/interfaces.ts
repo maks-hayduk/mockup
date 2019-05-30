@@ -1,12 +1,10 @@
-export interface IAction {
-  type: string;
-  id: number;
-  text?: string;
-  filter?: string;
+export interface ITodo {
+  id: string;
+  text: string;
+  completed: boolean;
 }
 
 export interface IState {
-  id: number;
-  text: string;
-  completed: boolean;
+  allIds: string[];
+  todoById: Map<string, ITodo>;
 }

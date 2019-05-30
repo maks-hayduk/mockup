@@ -1,21 +1,20 @@
 import React from 'react';
 import { AddTodo, TodoList , Footer } from '../../components/Todo';
-import { IState } from '../../store/domains/todo/interfaces';
-import getVisibleTodos from '../../store/domains/todo/getVisableTodos';
+import { ITodo } from '../../store/domains/todo/interfaces';
 import { uuid } from '../../utils';
+import {} from '../../store/domains/todo/actionTypes'
 
 interface IProps {
-  todos: IState[];
   visabilityFilter: string;
-  addTodo: (text: string, id: number) => void;
-  toggleTodo: (id: number) => void;
+  visableTodos: ITodo[];
+  addTodo: (text: string, id: string) => void;
+  toggleTodo: (id: string) => void;
   filterTodo: (filter: string) => void;
 }
 
 class TodoApp extends React.Component <IProps> {
   render() {
-    const { todos, visabilityFilter, addTodo, toggleTodo, filterTodo } = this.props;
-    const visibleTodos = getVisibleTodos(todos, visabilityFilter);
+    const { visableTodos, visabilityFilter, addTodo, toggleTodo, filterTodo } = this.props;
     return (
       <div>
         <AddTodo onAddClick={ text => {
@@ -24,7 +23,7 @@ class TodoApp extends React.Component <IProps> {
         }
         } />
         
-        <TodoList todos={visibleTodos} onTodoClick={toggleTodo} />
+        <TodoList todos={visableTodos} onTodoClick={toggleTodo} />
 
         <Footer visabilityFilter={visabilityFilter} onFilterClick={filterTodo} />
       </div>

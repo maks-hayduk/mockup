@@ -1,17 +1,17 @@
-import { ADD_TODO, SET_VISABILITY_FILTER, TOGGLE_TODO } from './actionTypes';
+import { ActionTypeKeys } from './actionTypes';
 
-export const addTodo = (text: string, nextId: number) => ({
-  type: ADD_TODO,
+export const addTodo = (text: string, nextId: string) => ({
+  type: ActionTypeKeys.ADD_TODO,
   text: text,
   id: nextId
 });
 
-export const toggleTodo = (id: number) => ({
-  type: TOGGLE_TODO,
+export const toggleTodo = (id: string) => ({
+  type: ActionTypeKeys.TOGGLE_TODO,
   id: id
 });
 
 export const filterTodo = (filter: string) => ({
-  type: SET_VISABILITY_FILTER,
+  type: ActionTypeKeys.SET_VISABILITY_FILTER,
   filter
 });

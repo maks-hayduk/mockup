@@ -1,14 +1,14 @@
 import React from 'react';
 
-import { IState } from '../../store/domains/todo/interfaces';
+import { ITodo } from '../../store/domains/todo/interfaces';
 
-interface ITodo {
+interface ITodoComponent {
   onClick: () => void;
   completed: boolean;
   text: string;
 }
 
-const Todo: React.FC <ITodo> = ({ onClick, completed, text }) => {
+const Todo: React.FC <ITodoComponent> = ({ onClick, completed, text }) => {
   return(
     <li onClick={onClick}
         style={{ textDecoration: completed ? 'line-through' : 'none' }}
@@ -17,8 +17,8 @@ const Todo: React.FC <ITodo> = ({ onClick, completed, text }) => {
 };
 
 interface ITodoList {
-  todos: IState[];
-  onTodoClick: (todo: number) => void;
+  todos: ITodo[];
+  onTodoClick: (todo: string) => void;
 }
 
 const TodoList: React.FC <ITodoList> = ({ todos, onTodoClick }) => {

@@ -8,8 +8,9 @@
     "react-dom": "^16.8.6",
     "react-redux": "^7.0.3",
     "react-scripts": "3.0.1",
-    "styled-components": "^4.2.0",
-    "seamless-immutable": "^7.1.4"
+    "reselect": "^4.0.0",
+    "seamless-immutable": "^7.1.4",
+    "styled-components": "^4.2.0"
   },
   "devDependencies": {
     "@types/jest": "24.0.13",

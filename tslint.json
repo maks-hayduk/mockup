@@ -5,7 +5,7 @@
       "tslint-config-airbnb"
     ],
     "rules": {
-        "ordered-imports": true,
+        "ordered-imports": false,
         "ban": false,
         "class-name": true,
         "curly": true,

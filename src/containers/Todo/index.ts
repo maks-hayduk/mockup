@@ -7,17 +7,18 @@ import {
   toggleTodo,
   filterTodo,
   selectTodos,
-  selectVisabilityFilter 
+  selectVisabilityFilter,
+  selectFilteredTodos
 } from '../../store/domains/todo';
 
 interface IPropsToProps {
-  todos: IState[];
+  todos: IState;
   visabilityFilter: string;
 }
 
 const mapStateToProps = (state: IPropsToProps) => ({
-  todos: selectTodos(state),
-  visabilityFilter: selectVisabilityFilter(state)
+  visabilityFilter: selectVisabilityFilter(state),
+  visableTodos: selectFilteredTodos(state)
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators({
