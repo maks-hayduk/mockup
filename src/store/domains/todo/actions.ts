@@ -1,23 +1,23 @@
-import { ActionTypeKeys, addTodoActionType, toggleTodoActionType, filterTodoActionType } from './actionTypes';
+import { ActionTypeKeys, IAddTodoActionType, IToggleTodoActionType, IFilterTodoActionType } from './actionTypes';
 
-export type addTodoAction = (text: string, nextId: string) => addTodoActionType;
+export type IAddTodoAction = (text: string, nextId: string) => IAddTodoActionType;
 
-export type toggleTodoAction = (id: string) => toggleTodoActionType;
+export type IToggleTodoAction = (id: string) => IToggleTodoActionType;
 
-export type filterTodoAction = (filter: string) => filterTodoActionType;
+export type IFilterTodoAction = (filter: string) => IFilterTodoActionType;
 
-export const addTodo: addTodoAction = (text: string, nextId: string) => ({
+export const addTodo: IAddTodoAction = (text: string, nextId: string) => ({
   type: ActionTypeKeys.ADD_TODO,
   text: text,
   id: nextId
 });
 
-export const toggleTodo: toggleTodoAction = (id: string) => ({
+export const toggleTodo: IToggleTodoAction = (id: string) => ({
   type: ActionTypeKeys.TOGGLE_TODO,
   id: id
 });
 
-export const filterTodo: filterTodoAction = (filter: string) => ({
+export const filterTodo: IFilterTodoAction = (filter: string) => ({
   type: ActionTypeKeys.SET_VISABILITY_FILTER,
   filter
 });

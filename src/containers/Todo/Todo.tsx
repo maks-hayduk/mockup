@@ -2,15 +2,17 @@ import React from 'react';
 import { AddTodo, TodoList , Footer } from '../../components/Todo';
 import { ITodo } from '../../store/domains/todo/interfaces';
 import { uuid } from '../../utils';
-import { addTodoAction, toggleTodoAction, filterTodoAction } from '../../store/domains/todo/actions';
+import { IAddTodoAction, IToggleTodoAction, IFilterTodoAction } from '../../store/domains/todo/actions';
 
 interface IProps {
   visabilityFilter: string;
   visableTodos: ITodo[];
-  addTodo: addTodoAction;
-  toggleTodo: toggleTodoAction;
-  filterTodo: filterTodoAction;
+  addTodo: IAddTodoAction;
+  toggleTodo: IToggleTodoAction;
+  filterTodo: IFilterTodoAction;
 }
+
+const counterId = uuid();
 
 class TodoApp extends React.Component <IProps> {
   render() {
@@ -18,7 +20,7 @@ class TodoApp extends React.Component <IProps> {
     return (
       <div>
         <AddTodo onAddClick={ text => {
-          let nextId = uuid();
+          let nextId = counterId();
           addTodo(text, nextId)
         }
         } />

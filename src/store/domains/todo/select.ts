@@ -1,6 +1,7 @@
 import { createSelector } from 'reselect';
 import { IState } from '../todo/interfaces';
 import { VisabilityList } from '../../../consts';
+import { getObjValues } from '../../../utils';
 
 interface IStateToProps {
   todos: IState;
@@ -8,7 +9,8 @@ interface IStateToProps {
 }
 
 export const selectTodos = (state: IStateToProps) => {
-  return Array.from(state.todos.todoById).map(el => el[1]);
+  console.log(state.todos);
+  return getObjValues(state.todos.todoById);
 };
 
 export const selectVisabilityFilter = (state: IStateToProps) => {

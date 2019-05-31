@@ -4,20 +4,20 @@ export enum ActionTypeKeys {
   SET_VISABILITY_FILTER = 'SET_VISABILITY_FILTER'
 }
 
-export interface addTodoActionType {
+export interface IAddTodoActionType {
   type: ActionTypeKeys.ADD_TODO;
   text: string;
   id: string;
 }
 
-export interface toggleTodoActionType {
+export interface IToggleTodoActionType {
   type: ActionTypeKeys.TOGGLE_TODO;
   id: string
 }
 
-export interface filterTodoActionType {
+export interface IFilterTodoActionType {
   type: ActionTypeKeys.SET_VISABILITY_FILTER;
   filter: string
 }
 
-export type TodoActionTypes = addTodoActionType | toggleTodoActionType | filterTodoActionType;
+export type TodoActionTypes = IAddTodoActionType | IToggleTodoActionType | IFilterTodoActionType;

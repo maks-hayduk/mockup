@@ -5,39 +5,26 @@ import { ActionTypeKeys, TodoActionTypes } from './actionTypes';
 import { IState, ITodo } from './interfaces';
 import { VisabilityList } from '../../../consts';
 
-const initialState: IState = { 
+const initialState: ImmutableObject<IState> = Immutable({ 
   allIds: ['1', '2'],
-  todoById: new Map([
-    ['1', { id: '1', text: 'first', completed: false }],
-    ['2', { id: '2', text: 'second', completed: false }]
-  ])
-};
+  todoById: {
+    '1': { id: '1', text: 'first', completed: false },
+    '2': { id: '2', text: 'second', completed: false }
+  }
+});
 
 const todos = (state = initialState, action: TodoActionTypes) => {
   switch (action.type) {
     case ActionTypeKeys.ADD_TODO:
-      return {
-        allIds: [
-          ...state.allIds,
-          action.id
-        ],
-        todoById: state.todoById.set(action.id,{
+      return state
+        .setIn(['allIds', state.allIds.length], action.id)
+        .setIn(['todoById', action.id], {
           id: action.id,
           text: action.text,
           completed: false
-        })
-      };
+        });
     case ActionTypeKeys.TOGGLE_TODO:
-      if (state.allIds.includes(action.id)) {
-        return {
-          allIds: [...state.allIds],
-          todoById: state.todoById.set(action.id, {
-            ...state.todoById.get(action.id),
-            completed: !state.todoById.get(action.id)!.completed
-          } as ITodo)
-        };
-      }
-      return state;
+      return state.updateIn(['todoById', action.id, 'completed'], val => !val);
     default:
       return state;
   }

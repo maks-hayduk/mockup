@@ -1,7 +1,6 @@
 const uuid = () => {
-  const date = new Date();
-  const randNumber = Math.ceil(Math.random() * 1000);
-  return date.getMinutes() + randNumber + '';
+  let id = 2;
+  return () => `${++id}`;
 };
 
 export default uuid;

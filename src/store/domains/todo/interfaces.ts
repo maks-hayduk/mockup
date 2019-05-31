@@ -6,5 +6,5 @@ export interface ITodo {
 
 export interface IState {
   allIds: string[];
-  todoById: Map<string, ITodo>;
+  todoById: any;
 }

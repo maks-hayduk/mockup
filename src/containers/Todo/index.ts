@@ -2,20 +2,15 @@ import { connect } from 'react-redux';
 import { bindActionCreators, Dispatch } from 'redux';
 import TodoApp from './Todo';
 import { 
-  IState,
   addTodo,
   toggleTodo,
   filterTodo,
   selectVisabilityFilter,
   selectFilteredTodos
 } from '../../store/domains/todo';
+import { IStateToProps } from '../../types';
 
-interface IPropsToProps {
-  todos: IState;
-  visabilityFilter: string;
-}
-
-const mapStateToProps = (state: IPropsToProps) => ({
+const mapStateToProps = (state: IStateToProps) => ({
   visabilityFilter: selectVisabilityFilter(state),
   visableTodos: selectFilteredTodos(state)
 });

@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { VisabilityList } from '../../consts';
-import { getEnumValues, convertToLowerCase } from '../../utils';
+import { getObjValues, convertToLowerCase } from '../../utils';
 
 interface ILink {
   filter: string;
@@ -31,7 +31,7 @@ const Footer: React.FC <IFooter> = ({ visabilityFilter, onFilterClick }) => {
   return(
     <p>
       Show:
-      { getEnumValues(VisabilityList).map(filter => {
+      { getObjValues(VisabilityList).map(filter => {
         const filterName = convertToLowerCase(filter);
 
         return ( <FilterLink 
