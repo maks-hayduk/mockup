@@ -12,12 +12,15 @@ export interface IAddTodoActionType {
 
 export interface IToggleTodoActionType {
   type: ActionTypeKeys.TOGGLE_TODO;
-  id: string
+  id: string;
 }
 
 export interface IFilterTodoActionType {
   type: ActionTypeKeys.SET_VISABILITY_FILTER;
-  filter: string
+  filter: string;
 }
 
-export type TodoActionTypes = IAddTodoActionType | IToggleTodoActionType | IFilterTodoActionType;
+export type TodoActionTypes = 
+      | IAddTodoActionType 
+      | IToggleTodoActionType  
+      | IFilterTodoActionType;

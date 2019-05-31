@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import Immutable, { ImmutableObject } from 'seamless-immutable';
 
 import { ActionTypeKeys, TodoActionTypes } from './actionTypes'; 
-import { IState, ITodo } from './interfaces';
+import { IState, IFilteredTodos } from './interfaces';
 import { VisabilityList } from '../../../consts';
 
 const initialState: ImmutableObject<IState> = Immutable({ 
@@ -17,7 +17,7 @@ const todos = (state = initialState, action: TodoActionTypes) => {
   switch (action.type) {
     case ActionTypeKeys.ADD_TODO:
       return state
-        .setIn(['allIds', state.allIds.length], action.id)
+        .updateIn(['allIds'], val => val.concat(action.id))
         .setIn(['todoById', action.id], {
           id: action.id,
           text: action.text,
@@ -36,7 +36,34 @@ const visabilityFilter = (state = initialVisability, action: TodoActionTypes) =>
   return action.type === ActionTypeKeys.SET_VISABILITY_FILTER ? action.filter : state;
 };
 
+const initialFilteredTodos: ImmutableObject<IFilteredTodos> = Immutable({
+  ALL: ['1', '2'],
+  ACTIVE: ['1', '2'],
+  COMPLETED: []
+});
+
+const filteredTodos = (state = initialFilteredTodos, action: TodoActionTypes) => {
+  switch (action.type) {
+    case ActionTypeKeys.ADD_TODO:
+      return state
+        .updateIn([VisabilityList.ALL], val => val.concat(action.id))
+        .updateIn([VisabilityList.ACTIVE], val => val.concat(action.id));
+    case ActionTypeKeys.TOGGLE_TODO:
+      if (!state.ACTIVE.includes(action.id)) {
+        return state
+          .updateIn([VisabilityList.ACTIVE], val => val.concat(action.id))
+          .set('COMPLETED', state.COMPLETED.filter(el => el !== action.id));
+      }
+      return state
+        .updateIn([VisabilityList.COMPLETED], val => val.concat(action.id))
+        .set('ACTIVE', state.ACTIVE.filter(el => el !== action.id));
+    default:
+      return state;
+  }
+};
+
 export default combineReducers({
   todos,
-  visabilityFilter
+  visabilityFilter,
+  filteredTodos
 });

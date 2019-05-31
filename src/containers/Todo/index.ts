@@ -6,7 +6,7 @@ import {
   toggleTodo,
   filterTodo,
   selectVisabilityFilter,
-  selectFilteredTodos
+  selectFilteredTodos,
 } from '../../store/domains/todo';
 import { IStateToProps } from '../../types';
 

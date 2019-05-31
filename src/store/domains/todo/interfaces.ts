@@ -4,7 +4,17 @@ export interface ITodo {
   completed: boolean;
 }
 
+interface ITodoObj {
+  [key: string]: ITodo;
+}
+
 export interface IState {
   allIds: string[];
-  todoById: any;
+  todoById: ITodoObj;
+}
+
+export interface IFilteredTodos {
+  ALL: string[];
+  ACTIVE: string[];
+  COMPLETED: string[];
 }

@@ -12,15 +12,13 @@ interface IProps {
   filterTodo: IFilterTodoAction;
 }
 
-const counterId = uuid();
-
 class TodoApp extends React.Component <IProps> {
   render() {
     const { visableTodos, visabilityFilter, addTodo, toggleTodo, filterTodo } = this.props;
     return (
       <div>
         <AddTodo onAddClick={ text => {
-          let nextId = counterId();
+          let nextId = uuid();
           addTodo(text, nextId)
         }
         } />

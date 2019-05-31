@@ -1,35 +1,33 @@
 import { createSelector } from 'reselect';
-import { IState } from '../todo/interfaces';
+import { IStateToProps } from '../../../types';
 import { VisabilityList } from '../../../consts';
-import { getObjValues } from '../../../utils';
-
-interface IStateToProps {
-  todos: IState;
-  visabilityFilter: string;
-}
 
 export const selectTodos = (state: IStateToProps) => {
-  console.log(state.todos);
-  return getObjValues(state.todos.todoById);
+  return state.todos.todoById;
 };
 
 export const selectVisabilityFilter = (state: IStateToProps) => {
   return state.visabilityFilter;
 };
 
+export const selectVisableTodos = (state: IStateToProps) => {
+  return state.filteredTodos;
+};
+
 export const selectFilteredTodos = createSelector(
   selectTodos,
+  selectVisableTodos,
   selectVisabilityFilter,
-  (todos, filter) => {
+  (todos, visableTodos, filter) => {
     switch (filter) {
       case VisabilityList.ALL:
-        return todos;
+        return visableTodos.ALL.map(id => todos[id]);
       case VisabilityList.ACTIVE:
-        return todos.filter(todo => !todo.completed);
+        return visableTodos.ACTIVE.map(id => todos[id]);
       case VisabilityList.COMPLETED:
-        return todos.filter(todo => todo.completed);
+        return visableTodos.COMPLETED.map(id => todos[id]);
       default:
-        return todos;
+        return visableTodos.ALL.map(id => todos[id]);
     }
   }
 );
