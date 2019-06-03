@@ -18,7 +18,7 @@ class TodoApp extends React.Component <IProps> {
     return (
       <div>
         <AddTodo onAddClick={ text => {
-          let nextId = uuid();
+          const nextId = uuid();
           addTodo(text, nextId)
         }
         } />

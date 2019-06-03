@@ -21,11 +21,11 @@ export const selectFilteredTodos = createSelector(
   (todos, visableTodos, filter) => {
     switch (filter) {
       case VisabilityList.ALL:
-        return visableTodos.ALL.map(id => todos[id]);
+        return visableTodos[filter].map(id => todos[id]);
       case VisabilityList.ACTIVE:
-        return visableTodos.ACTIVE.map(id => todos[id]);
+        return visableTodos[filter].map(id => todos[id]);
       case VisabilityList.COMPLETED:
-        return visableTodos.COMPLETED.map(id => todos[id]);
+        return visableTodos[filter].map(id => todos[id]);
       default:
         return visableTodos.ALL.map(id => todos[id]);
     }

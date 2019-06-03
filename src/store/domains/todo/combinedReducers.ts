@@ -37,9 +37,9 @@ const visabilityFilter = (state = initialVisability, action: TodoActionTypes) =>
 };
 
 const initialFilteredTodos: ImmutableObject<IFilteredTodos> = Immutable({
-  ALL: ['1', '2'],
-  ACTIVE: ['1', '2'],
-  COMPLETED: []
+  [VisabilityList.ALL]: ['1', '2'],
+  [VisabilityList.ACTIVE]: ['1', '2'],
+  [VisabilityList.COMPLETED]: []
 });
 
 const filteredTodos = (state = initialFilteredTodos, action: TodoActionTypes) => {
@@ -52,11 +52,11 @@ const filteredTodos = (state = initialFilteredTodos, action: TodoActionTypes) =>
       if (!state.ACTIVE.includes(action.id)) {
         return state
           .updateIn([VisabilityList.ACTIVE], val => val.concat(action.id))
-          .set('COMPLETED', state.COMPLETED.filter(el => el !== action.id));
+          .set(VisabilityList.COMPLETED, state.COMPLETED.filter(el => el !== action.id));
       }
       return state
         .updateIn([VisabilityList.COMPLETED], val => val.concat(action.id))
-        .set('ACTIVE', state.ACTIVE.filter(el => el !== action.id));
+        .set(VisabilityList.ACTIVE, state.ACTIVE.filter(el => el !== action.id));
     default:
       return state;
   }

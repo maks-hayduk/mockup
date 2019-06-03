@@ -1,3 +1,5 @@
+import { VisabilityList } from '../../../consts';
+
 export interface ITodo {
   id: string;
   text: string;
@@ -14,7 +16,7 @@ export interface IState {
 }
 
 export interface IFilteredTodos {
-  ALL: string[];
-  ACTIVE: string[];
-  COMPLETED: string[];
+  [VisabilityList.ALL]: string[];
+  [VisabilityList.ACTIVE]: string[];
+  [VisabilityList.COMPLETED]: string[];
 }
