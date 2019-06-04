@@ -6,7 +6,7 @@ export interface ITodo {
   completed: boolean;
 }
 
-interface ITodoObj {
+export interface ITodoObj {
   [key: string]: ITodo;
 }
 
@@ -15,8 +15,4 @@ export interface IState {
   todoById: ITodoObj;
 }
 
-export interface IFilteredTodos {
-  [VisabilityList.ALL]: string[];
-  [VisabilityList.ACTIVE]: string[];
-  [VisabilityList.COMPLETED]: string[];
-}
+export type IFilteredTodos = { [key in VisabilityList]: string[] }

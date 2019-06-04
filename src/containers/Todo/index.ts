@@ -7,6 +7,7 @@ import {
   filterTodo,
   selectVisabilityFilter,
   selectFilteredTodos,
+  getTodos
 } from '../../store/domains/todo';
 import { IStateToProps } from '../../types';
 
@@ -18,7 +19,8 @@ const mapStateToProps = (state: IStateToProps) => ({
 const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators({
   addTodo,
   toggleTodo,
-  filterTodo
+  filterTodo,
+  getTodos
 }, dispatch);
 
 const Todo = connect(mapStateToProps, mapDispatchToProps)(TodoApp);

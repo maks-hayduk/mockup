@@ -1,3 +1,3 @@
 export * from './interfaces';
-export * from './select';
+export * from './selectors';
 export * from './actions';

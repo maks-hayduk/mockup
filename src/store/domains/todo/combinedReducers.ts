@@ -6,15 +6,17 @@ import { IState, IFilteredTodos } from './interfaces';
 import { VisabilityList } from '../../../consts';
 
 const initialState: ImmutableObject<IState> = Immutable({ 
-  allIds: ['1', '2'],
-  todoById: {
-    '1': { id: '1', text: 'first', completed: false },
-    '2': { id: '2', text: 'second', completed: false }
-  }
+  allIds: [],
+  todoById: { }
 });
 
 const todos = (state = initialState, action: TodoActionTypes) => {
   switch (action.type) {
+    case ActionTypeKeys.GET_TODOS_FULFILLED: {
+      return state
+        .setIn(['todoById'], action.payload)
+        .setIn(['allIds'], Object.keys(action.payload));
+    }
     case ActionTypeKeys.ADD_TODO:
       return state
         .updateIn(['allIds'], val => val.concat(action.id))
@@ -37,17 +39,24 @@ const visabilityFilter = (state = initialVisability, action: TodoActionTypes) =>
 };
 
 const initialFilteredTodos: ImmutableObject<IFilteredTodos> = Immutable({
-  [VisabilityList.ALL]: ['1', '2'],
-  [VisabilityList.ACTIVE]: ['1', '2'],
+  [VisabilityList.ALL]: [],
+  [VisabilityList.ACTIVE]: [],
   [VisabilityList.COMPLETED]: []
 });
 
 const filteredTodos = (state = initialFilteredTodos, action: TodoActionTypes) => {
   switch (action.type) {
-    case ActionTypeKeys.ADD_TODO:
+    case ActionTypeKeys.GET_TODOS_FULFILLED: {
+      const payloadKeys = Object.keys(action.payload);
+      return state
+        .setIn([VisabilityList.ALL], payloadKeys)
+        .setIn([VisabilityList.ACTIVE], payloadKeys);
+    }
+    case ActionTypeKeys.ADD_TODO: {
       return state
         .updateIn([VisabilityList.ALL], val => val.concat(action.id))
         .updateIn([VisabilityList.ACTIVE], val => val.concat(action.id));
+    }
     case ActionTypeKeys.TOGGLE_TODO:
       if (!state.ACTIVE.includes(action.id)) {
         return state

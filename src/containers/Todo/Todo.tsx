@@ -2,7 +2,7 @@ import React from 'react';
 import { AddTodo, TodoList , Footer } from '../../components/Todo';
 import { ITodo } from '../../store/domains/todo/interfaces';
 import { uuid } from '../../utils';
-import { IAddTodoAction, IToggleTodoAction, IFilterTodoAction } from '../../store/domains/todo/actions';
+import { IAddTodoAction, IToggleTodoAction, IFilterTodoAction, IGetTodosAction } from '../../store/domains/todo/actions';
 
 interface IProps {
   visabilityFilter: string;
@@ -10,9 +10,13 @@ interface IProps {
   addTodo: IAddTodoAction;
   toggleTodo: IToggleTodoAction;
   filterTodo: IFilterTodoAction;
+  getTodos: IGetTodosAction;
 }
 
 class TodoApp extends React.Component <IProps> {
+  componentDidMount() {
+    this.props.getTodos();
+  }
   render() {
     const { visableTodos, visabilityFilter, addTodo, toggleTodo, filterTodo } = this.props;
     return (
